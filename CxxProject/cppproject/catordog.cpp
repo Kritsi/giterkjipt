@@ -19,6 +19,7 @@ CatOrDog::~CatOrDog()
 void CatOrDog::on_btnCat_clicked()
 {
     Database mydb;
+    mydb.startDB();
     string msg = "";
 
     if(mydb.checkFreeCatCages()) {
@@ -36,6 +37,7 @@ void CatOrDog::on_btnCat_clicked()
 void CatOrDog::on_btnDog_clicked()
 {
     Database mydb;
+    mydb.startDB();
     string msg = "";
 
     if(mydb.checkFreeDogCages()) {

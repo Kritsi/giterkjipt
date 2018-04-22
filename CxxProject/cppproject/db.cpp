@@ -1,11 +1,27 @@
 #include <QCoreApplication>
 #include <iostream>
 #include "QMessageBox"
+#include "initdb.h"
 #include "db.h"
 
 Database::Database() {
+
+}
+
+void Database::startDB(){
     mydb = QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName("../dyrDB.db");
+    QString fpath = "../dyrDB.db";
+    QFile filepath(fpath);
+
+    if(!filepath.exists()){
+        this->initDB(fpath);
+        mydb.setDatabaseName(fpath);
+        QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
+        exit(12);
+    }else{
+        mydb.setDatabaseName(fpath);
+    }
+    mydb.open();
 }
 
 QSqlDatabase Database::getMydb() {
@@ -646,6 +662,29 @@ string Database::hashPassword(string password){
     return hashoutput;
 }
 
+void Database::closeDB(){
+    mydb.close();
+}
+
+void Database::initDB(QString path){
+    initdb newdatabase;
+    newdatabase.initDatabase(path);
+}
+
 bool Database::checkDB() {
     return mydb.open();
+}
+
+void Database::insertLogEntry(int animalid,QString message){
+       QDateTime datetime;
+       QString time = datetime.currentDateTime().toString();
+
+       QSqlQuery qry;
+
+       qry.prepare("INSERT INTO Log (animalid, message, timestamp) "
+                   "VALUES (?,?, ?)");
+       qry.bindValue(0, animalid);
+       qry.bindValue(1, message);
+       qry.bindValue(2, time);
+       qry.exec();
 }

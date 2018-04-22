@@ -23,6 +23,7 @@ void searchCustomerWindow::setAnimalType(string type) {
 void searchCustomerWindow::on_pushButton_clicked()
 {
     Database mydb;
+    mydb.startDB();
 
     string tlf = ui->inputTlf->text().toStdString();
     int tlfNr = 0;

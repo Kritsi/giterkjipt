@@ -28,6 +28,7 @@ void textBox::setAnimalName(string aname) {
 void textBox::on_pushButton_clicked() {
     string text = ui->textEdit->toPlainText().toStdString();
     Database mydb;
+    mydb.startDB();
 
     mydb.addSpecialNeeds(customer, animalName, text);
 

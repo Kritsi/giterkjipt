@@ -22,6 +22,7 @@ secWindow::secWindow(QWidget *parent) :
     this->setPalette(palette);
 
     Database mydb;
+    mydb.startDB();
     if(!mydb.getMydb().open()) {
     } else {
         QSqlQueryModel * model = new QSqlQueryModel();
@@ -60,6 +61,7 @@ void secWindow::on_btnCheckOut_clicked()
 
 void secWindow::on_tester_clicked() {
     Database mydb;
+    mydb.startDB();
     if(!mydb.getMydb().open()) {
         //Noe gikk galt..
     } else {
@@ -93,6 +95,8 @@ void secWindow::on_pushButton_clicked()
     }
 
     Database mydb;
+    mydb.startDB();
+
     if(!mydb.getMydb().open()) {
         //Noe gikk galt
     } else {
@@ -125,6 +129,7 @@ void secWindow::on_tableView_Animals_activated(const QModelIndex &index)
 
     AnimalProfilWindow animalprofil;
     Database mydb;
+    mydb.startDB();
     //Henter ut dyre info
     int animalId = mydb.getAnimalId(atlf, aname);
     string animalAge = mydb.getAnimalAge(animalId);

@@ -13,6 +13,7 @@ void initdb::initDatabase(QString path){
 
     initAnimals();
     initCages();
+    initCageRows();
     initCustomer();
     initLog();
     initUsers();
@@ -33,16 +34,6 @@ void initdb::initAnimals(){
 }
 
 
-void initdb::initCages(){
-    QSqlQuery query;
-    query.exec("CREATE TABLE `Cages` ("
-                   "`cageID`	INTEGER PRIMARY KEY AUTOINCREMENT,"
-                   "`cageNr`	INTEGER,"
-                   "`animalID`	INTEGER,"
-                   "`Type`	TEXT,"
-                   "FOREIGN KEY(`animalID`) REFERENCES `Animal`(`animalId`) ON DELETE SET NULL);"
-               );
-}
 
 
 void initdb::initCustomer(){
@@ -58,11 +49,12 @@ void initdb::initCustomer(){
 void initdb::initLog(){
     QSqlQuery query;
     query.exec("CREATE TABLE `Log` ("
-        "`animalID`	INTEGER,"
-        "`message`	TEXT,"
-        "`timestamp`	TEXT,"
-        "FOREIGN KEY(`animalID`) REFERENCES `Animal`(`animalId`),"
-        "PRIMARY KEY(`animalID`));");
+               "`animalID`	INTEGER,"
+               "`message`	TEXT,"
+               "`timestamp`	TEXT,"
+               "`LogID`	INTEGER PRIMARY KEY AUTOINCREMENT,"
+               "FOREIGN KEY(`animalID`) REFERENCES `Animal`(`animalId`));"
+               );
 }
 
 
@@ -74,4 +66,32 @@ void initdb::initUsers(){
                   "`Salt`	TEXT,"
                    "`Password`	TEXT,"
                    "`Uid`	INTEGER PRIMARY KEY AUTOINCREMENT);");
+}
+
+void initdb::initCages(){
+    QSqlQuery query;
+    query.exec("CREATE TABLE `Cages` ("
+                   "`cageID`	INTEGER PRIMARY KEY AUTOINCREMENT,"
+                   "`cageNr`	INTEGER,"
+                   "`animalID`	INTEGER,"
+                   "`Type`	TEXT,"
+                   "`isEmpty`	INTEGER,"
+                   "FOREIGN KEY(`animalID`) REFERENCES `Animal`(`animalId`) ON DELETE SET NULL);"
+               );
+}
+
+void initdb::initCageRows(){
+    QSqlQuery qry;
+    for(int i = 1; i <= 50; i++){
+        qry.prepare("INSERT INTO Cages (cageNr, Type, isEmpty) VALUES (?, ?, 0 );");
+        if(i<=25){
+            qry.bindValue(0,i);
+            qry.bindValue(1, QString::fromStdString("Cat"));
+        } else {
+            qry.bindValue(0,(i-25));
+            qry.bindValue(1, QString::fromStdString("Dog"));
+       }
+        qry.exec();
+
+    }
 }

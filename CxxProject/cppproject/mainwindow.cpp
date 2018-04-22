@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    db.startDB();
     if(db.checkDB())
         ui->lblconnection->setText("Up and running!");
     else
@@ -32,6 +32,7 @@ MainWindow::~MainWindow()
 }
 
 bool MainWindow::loginUser (string username, string password) {
+    db.startDB();
     vector<string> output = db.getPasswordInfo(username);
     string passordhash = output[0];
     string salt = output[1];
@@ -50,6 +51,7 @@ bool MainWindow::loginUser (string username, string password) {
 }
 
 bool MainWindow::checkPassword(string dbPass, string inputPass){
+    db.startDB();
     QMessageBox msgBox;
     msgBox.setText(QString::fromStdString(inputPass+"   "+dbPass));
     msgBox.exec();
@@ -59,6 +61,7 @@ bool MainWindow::checkPassword(string dbPass, string inputPass){
 
 void MainWindow::on_Login_clicked()
 {
+    db.startDB();
     string usnm = ui->leUsername->text().toStdString();
     string pswd = ui->lePassword->text().toStdString();
 

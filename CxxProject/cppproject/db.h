@@ -13,6 +13,7 @@ using namespace std;
 class Database {
 public:
     Database();
+    void startDB();
     QSqlDatabase getMydb();
     void insertCustomer(string firstname, string lastname, int tlfNr);
     void insertAnimal(Customer owner, string name, int age, string type, bool isFemale, bool specialNeeds);
@@ -41,8 +42,10 @@ public:
     void insertTemplateUsers();
     void insertUser(string iname, string iun, string ipass, string isalt);
     string hashPassword(string password);
+    void insertLogEntry(int animalID, QString message);
     bool checkDB();
-
+    void initDB(QString path);
+    void closeDB();
 private:
     QSqlDatabase mydb;
 };

@@ -19,6 +19,7 @@ INPUT(
 ./release\animalprofilwindow.o
 ./release\catordog.o
 ./release\initdb.o
+./release\customlog.o
 ./release\moc_mainwindow.o
 ./release\moc_secwindow.o
 ./release\moc_checkinwindow.o
@@ -29,4 +30,5 @@ INPUT(
 ./release\moc_searchcustomerwindow.o
 ./release\moc_animalprofilwindow.o
 ./release\moc_catordog.o
+./release\moc_customlog.o
 );

@@ -33,6 +33,7 @@ void CheckInWindow::setAnimalType(string type) {
 void CheckInWindow::on_buttonBox_2_accepted()
 {
     Database mydb;
+    mydb.startDB();
 
     //Customer
     string firstname = ui->inputFirstname->text().toStdString();

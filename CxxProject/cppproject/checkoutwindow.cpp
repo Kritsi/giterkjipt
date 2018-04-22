@@ -43,6 +43,8 @@ void CheckOutWindow::on_buttonBox_accepted()
     msgBox.exec();
 
     Database mydb;
+    mydb.startDB();
+
     mydb.deleteAnimal(tlf, name);
 }
 

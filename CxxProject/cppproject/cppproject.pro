@@ -43,7 +43,8 @@ SOURCES += \
     searchcustomerwindow.cpp \
     animalprofilwindow.cpp \
     catordog.cpp \
-    initdb.cpp
+    initdb.cpp \
+    customlog.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -64,7 +65,8 @@ HEADERS += \
     searchcustomerwindow.h \
     animalprofilwindow.h \
     catordog.h \
-    initdb.h
+    initdb.h \
+    customlog.h
 
 FORMS += \
         mainwindow.ui \
@@ -76,4 +78,5 @@ FORMS += \
     userexistswindow.ui \
     searchcustomerwindow.ui \
     animalprofilwindow.ui \
-    catordog.ui
+    catordog.ui \
+    customlog.ui

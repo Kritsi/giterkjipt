@@ -19,6 +19,7 @@ INPUT(
 ./debug\animalprofilwindow.o
 ./debug\catordog.o
 ./debug\initdb.o
+./debug\customlog.o
 ./debug\moc_mainwindow.o
 ./debug\moc_secwindow.o
 ./debug\moc_checkinwindow.o
@@ -29,4 +30,5 @@ INPUT(
 ./debug\moc_searchcustomerwindow.o
 ./debug\moc_animalprofilwindow.o
 ./debug\moc_catordog.o
+./debug\moc_customlog.o
 );

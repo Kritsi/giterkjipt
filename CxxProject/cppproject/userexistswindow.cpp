@@ -31,6 +31,8 @@ void userExistsWindow::setTlfNr(int tlf) {
 
 void userExistsWindow::setCusomerName() {
     Database mydb;
+    mydb.startDB();
+
     Customer c = mydb.createCustomer(tlfnr);
 
     string cName = c.getFirstName() + " " + c.getLastName();

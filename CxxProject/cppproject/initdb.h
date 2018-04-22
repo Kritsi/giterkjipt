@@ -13,6 +13,7 @@ private:
     void initCustomer();
     void initLog();
     void initUsers();
+    void initCageRows();
 };
 
 #endif // INITDB_H

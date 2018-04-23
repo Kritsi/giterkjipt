@@ -18,6 +18,7 @@ public:
     void setTlfNr(int tlf);
     void setCusomerName();
     void setAnimalType(string type);
+    bool checkAllInput(string iname, string iage);
 
 private slots:
     void on_buttonBox_accepted();

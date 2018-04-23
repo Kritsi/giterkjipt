@@ -1,6 +1,7 @@
 #include <QCoreApplication>
 #include <iostream>
 #include "person.h"
+#include <regex>
 
 using namespace std;
 
@@ -18,6 +19,22 @@ Person::Person(string fn, string ln, int a) {
 
 string Person::printInfo() {
     return firstname + " " + lastname + " " + tlfNr;
+}
+
+bool Person::checkName(string iname) {
+    regex reg("^[a-zæøåA-ZÆØÅ -]+$");
+    if(regex_match(iname, reg)) {
+        return true;
+    }
+    return false;
+}
+
+bool Person::checkTlfNr(string tlfNr) {
+    regex reg("^[0-9]{8}$");
+    if(regex_match(tlfNr, reg)) {
+        return true;
+    }
+    return false;
 }
 
 void Person::setFirstName(string fn) {

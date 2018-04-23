@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include "hotell.h"
+#include "db.h"
 
 using namespace std;
 
@@ -12,6 +13,23 @@ Hotel::Hotel() {
 Hotel::Hotel(string n, int nr) {
     name = n;
     cages = nr;
+}
+
+//Kan denne brukes?
+bool Hotel::checkFreeCages(string animalType) {
+    Database mydb;
+    mydb.startDB();
+
+    if(animalType == "Cat") {
+        if(mydb.checkFreeCatCages()) {
+            return false;
+        }
+    } else {
+        if(mydb.checkFreeDogCages()) {
+            return false;
+        }
+    }
+    return false;
 }
 
 void Hotel::printHotel() {

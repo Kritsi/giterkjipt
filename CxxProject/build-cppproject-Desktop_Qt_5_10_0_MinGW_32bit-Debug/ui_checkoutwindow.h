@@ -30,6 +30,8 @@ public:
     QLineEdit *inputFindName;
     QLabel *label_2;
     QLabel *backgroundImg;
+    QLabel *label_tlf_error;
+    QLabel *label_name_error;
 
     void setupUi(QDialog *CheckOutWindow)
     {
@@ -62,6 +64,12 @@ public:
         backgroundImg->setStyleSheet(QLatin1String("QLabel::backgroundImg {\n"
 "opacity: 0.5;\n"
 "}"));
+        label_tlf_error = new QLabel(CheckOutWindow);
+        label_tlf_error->setObjectName(QStringLiteral("label_tlf_error"));
+        label_tlf_error->setGeometry(QRect(280, 60, 121, 20));
+        label_name_error = new QLabel(CheckOutWindow);
+        label_name_error->setObjectName(QStringLiteral("label_name_error"));
+        label_name_error->setGeometry(QRect(280, 100, 121, 20));
 
         retranslateUi(CheckOutWindow);
         QObject::connect(buttonBox, SIGNAL(accepted()), CheckOutWindow, SLOT(accept()));
@@ -76,6 +84,8 @@ public:
         label->setText(QApplication::translate("CheckOutWindow", "Telephone:", nullptr));
         label_2->setText(QApplication::translate("CheckOutWindow", "Animal Name:", nullptr));
         backgroundImg->setText(QString());
+        label_tlf_error->setText(QString());
+        label_name_error->setText(QString());
     } // retranslateUi
 
 };

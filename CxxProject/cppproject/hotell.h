@@ -27,6 +27,7 @@ public:
     string printEmployees();
     string printAnimals();
     string printCustomer();
+    bool checkFreeCages(string animalType);
 
 private:
     string name;

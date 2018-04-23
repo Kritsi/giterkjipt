@@ -30,6 +30,52 @@ void CheckInWindow::setAnimalType(string type) {
     animalType = type;
 }
 
+bool CheckInWindow::checkAllInput(string ifirstname, string ilastname, string itlf, string iname, string iage) {
+    Customer c;
+    Animal a;
+    bool fn = c.checkName(ifirstname);
+    bool ln = c.checkName(ilastname);
+    bool tlf = c.checkTlfNr(itlf);
+    bool name = a.checkName(iname);
+    bool age = a.checkAge(iage);
+
+    if(fn && ln && tlf && name && age) {
+        return true;
+    }
+
+    if(!fn) {
+        ui->label_fn_error->setText("Feil i fornavn!");
+    } else {
+        ui->label_fn_error->setText("");
+    }
+
+    if(!ln) {
+        ui->label_ln_error->setText("Feil i etternavn!");
+    } else {
+        ui->label_ln_error->setText("");
+    }
+
+    if(!tlf) {
+        ui->label_tlf_error->setText("Feil i tlfnr!");
+    } else {
+        ui->label_tlf_error->setText("");
+    }
+
+    if(!name) {
+        ui->label_name_error->setText("Feil i navn!");
+    } else {
+        ui->label_name_error->setText("");
+    }
+
+    if(!age) {
+        ui->label_age_error->setText("Feil i alder!");
+    } else {
+        ui->label_age_error->setText("");
+    }
+
+    return false;
+}
+
 void CheckInWindow::on_buttonBox_2_accepted()
 {
     Database mydb;
@@ -38,35 +84,20 @@ void CheckInWindow::on_buttonBox_2_accepted()
     //Customer
     string firstname = ui->inputFirstname->text().toStdString();
     string lastname = ui->inputLastname->text().toStdString();
-    string tlf = ui->inputTlf->text().toStdString();
     int tlfNr = ui->inputTlf->text().toInt();
-    Customer c = Customer(firstname, lastname, tlf);
+    Customer c = Customer(firstname, lastname, to_string(tlfNr));
 
     //Animal
     bool isFemale = ui->radioButton_3->isChecked();
     string name = ui->inputName->text().toStdString();
     int age = ui->inputAge->text().toInt();
     bool specialNeeds = ui->checkBox->checkState();
-
     Animal a;
-    if(animalType == "Cat") {
-        a = Cat(c, 232, name, age, isFemale, specialNeeds);
-    } else {
-        a = Dog(c, 232, name, age, isFemale, specialNeeds);
-    }
 
-    bool freecage = false;
-    if(animalType == "Cat") {
-        if(mydb.checkFreeCatCages()) {
-            freecage = true;
-        }
-    } else {
-        if(mydb.checkFreeDogCages()) {
-            freecage = true;
-        }
-    }
+    //Check input
+    bool correctInput = checkAllInput(firstname, lastname, to_string(tlfNr), name, to_string(age));
 
-    if(freecage) {
+    if(correctInput) {
         mydb.insertCustomer(firstname, lastname, tlfNr);
         mydb.insertAnimal(c, name, age, animalType, isFemale, specialNeeds);
 
@@ -84,8 +115,8 @@ void CheckInWindow::on_buttonBox_2_accepted()
             textbox.setModal(true);
             textbox.exec();
         }
+        this->close();
     }
-    this->close();
 }
 
 void CheckInWindow::on_buttonBox_2_rejected()

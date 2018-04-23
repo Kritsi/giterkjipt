@@ -41,6 +41,8 @@ public:
     QLabel *label_10;
     QLabel *label_11;
     QLabel *nameCustomer;
+    QLabel *label_name_error;
+    QLabel *label_age_error;
 
     void setupUi(QDialog *userExistsWindow)
     {
@@ -91,6 +93,12 @@ public:
         nameCustomer = new QLabel(userExistsWindow);
         nameCustomer->setObjectName(QStringLiteral("nameCustomer"));
         nameCustomer->setGeometry(QRect(30, 20, 371, 16));
+        label_name_error = new QLabel(userExistsWindow);
+        label_name_error->setObjectName(QStringLiteral("label_name_error"));
+        label_name_error->setGeometry(QRect(250, 110, 151, 16));
+        label_age_error = new QLabel(userExistsWindow);
+        label_age_error->setObjectName(QStringLiteral("label_age_error"));
+        label_age_error->setGeometry(QRect(250, 140, 151, 16));
 
         retranslateUi(userExistsWindow);
         QObject::connect(buttonBox, SIGNAL(accepted()), userExistsWindow, SLOT(accept()));
@@ -113,6 +121,8 @@ public:
         label_10->setText(QApplication::translate("userExistsWindow", "Type:", nullptr));
         label_11->setText(QApplication::translate("userExistsWindow", "Special needs/wishes:", nullptr));
         nameCustomer->setText(QString());
+        label_name_error->setText(QString());
+        label_age_error->setText(QString());
     } // retranslateUi
 
 };

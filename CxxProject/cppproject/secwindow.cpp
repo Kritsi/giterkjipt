@@ -105,7 +105,7 @@ void secWindow::on_pushButton_clicked()
 
         qry->prepare("SELECT a.name as 'Animal name', a.type as Type, ca.cageNr as 'Cage number', c.firstname as 'First name', c.lastname as 'Last name', c.tlfNr as 'Telephone number'"
                   "FROM Animal as a, Customer as c, Cages as ca WHERE a.customerNr = c.customerNr AND a.animalId = ca.animalID "
-                  "AND ca.isEmpty=1 AND (a.name= :search OR c.firstname= :search "
+                  "AND ca.isEmpty=1 AND (a.name= :search OR c.firstname= :search OR a.type= :search "
                   "OR c.lastname= :search OR c.tlfNr= :search OR (c.firstname= :search AND c.lastname= :search2))");
         qry->bindValue(":search", QString::fromStdString(search1));
         qry->bindValue(":search2", QString::fromStdString(search2));

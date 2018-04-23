@@ -17,6 +17,7 @@ public:
     explicit CheckInWindow(QWidget *parent = 0);
     ~CheckInWindow();
     void setAnimalType(string type);
+    bool checkAllInput(string ifirstname, string ilastname, string itlf, string iname, string iage);
 
 private slots:
     void on_buttonBox_2_accepted();

@@ -19,6 +19,9 @@ public:
     string getTlfNr();
     void setBirthDate(string);
     string getBirthDate();
+    bool checkName(string iname);
+    bool checkTlfNr(string tlfNr);
+    //bool checkAllInput(string, ifirstname, ilastname, itlf, iname, iage);
 
 protected:
     string firstname;

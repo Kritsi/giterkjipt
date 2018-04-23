@@ -18,6 +18,22 @@ string Animal::printAnimal() {
          + type + " " + to_string(isFemale) + " " + to_string(specialNeeds);
 }
 
+bool Animal::checkName(string iname) {
+    regex reg("^[a-zæøåA-ZÆØÅ ]+$");
+    if(regex_match(iname, reg)) {
+        return true;
+    }
+    return false;
+}
+
+bool Animal::checkAge(string iage) {
+    regex reg("^[0-9]+$");
+    if(regex_match(iage, reg)) {
+        return true;
+    }
+    return false;
+}
+
 void Animal::setName(string n) {
     name = n;
 }

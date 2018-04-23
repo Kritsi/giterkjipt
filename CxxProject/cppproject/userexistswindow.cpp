@@ -44,44 +44,53 @@ void userExistsWindow::setAnimalType(string type) {
     animalType = type;
 }
 
+bool userExistsWindow::checkAllInput(string iname, string iage) {
+    Animal a;
+    bool name = a.checkName(iname);
+    bool age = a.checkAge(iage);
+
+    if(name && age) {
+        return true;
+    }
+
+    if(!name) {
+        ui->label_name_error->setText("Feil i navn!");
+    } else {
+        ui->label_name_error->setText("");
+    }
+
+    if(!age) {
+        ui->label_age_error->setText("Feil i alder!");
+    } else {
+        ui->label_age_error->setText("");
+    }
+
+    return false;
+}
+
 void userExistsWindow::on_buttonBox_accepted()
 {
+    Database mydb;
+    mydb.startDB();
+
     //Customer
-    int tlfNr = tlfnr;
+    Customer c = mydb.createCustomer(tlfnr);
 
     //Animal
+    Animal a;
     bool isFemale = ui->radioButton_5->isChecked();
-
     string name = ui->inputName->text().toStdString();
     int age = ui->inputAge->text().toInt();
     bool specialNeeds = ui->checkBox->checkState();
 
-    Database mydb;
-    Customer c = mydb.createCustomer(tlfNr);
-    Animal a;
-    if(animalType == "Cat") {
-        a = Cat(c, 232, name, age, isFemale, specialNeeds);
-    } else {
-        a = Dog(c, 232, name, age, isFemale, specialNeeds);
-    }
+    //Check Input
+    bool correctInput = false;//checkAllInput(name, to_string(age));
 
-    bool freecage = false;
-
-    if(animalType == "Cat") {
-        if(mydb.checkFreeCatCages()) {
-            freecage = true;
-        }
-    } else {
-        if(mydb.checkFreeDogCages()) {
-            freecage = true;
-        }
-    }
-
-    if(freecage) {
-        mydb.insertCustomer(c.getFirstName(), c.getLastName(), stoi(c.getTlfNr()));
+    if(correctInput) {
+        mydb.insertCustomer(c.getFirstName(), c.getLastName(), tlfnr);
         mydb.insertAnimal(c, name, age, animalType, isFemale, specialNeeds);
 
-        int animalId = mydb.getAnimalId(tlfNr, name);
+        int animalId = mydb.getAnimalId(tlfnr, name);
         if(animalType == "Cat") {
             mydb.setCatInCage(animalId);
         } else {
@@ -95,5 +104,6 @@ void userExistsWindow::on_buttonBox_accepted()
             textbox.setModal(true);
             textbox.exec();
         }
+        this->close();
     }
 }

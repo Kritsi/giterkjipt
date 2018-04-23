@@ -37,6 +37,7 @@ public:
     bool checkFreeDogCages();
     void setCatInCage(int animalId);
     void setDogInCage(int animalId);
+    void removeAnimalFromCage(int animalId);
     vector<string> getPasswordInfo(string iusername);
     bool UserExists(string iusername);
     void insertTemplateUsers();

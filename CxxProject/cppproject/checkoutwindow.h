@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+using namespace std;
+
 namespace Ui {
 class CheckOutWindow;
 }
@@ -14,6 +16,7 @@ class CheckOutWindow : public QDialog
 public:
     explicit CheckOutWindow(QWidget *parent = 0);
     ~CheckOutWindow();
+    bool checkAllInput(string itlf, string iname);
 
 private slots:
     void on_buttonBox_accepted();

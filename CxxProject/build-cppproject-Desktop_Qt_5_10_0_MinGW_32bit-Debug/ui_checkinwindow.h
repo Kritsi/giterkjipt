@@ -47,6 +47,11 @@ public:
     QGroupBox *groupBox_2;
     QRadioButton *radioButton_4;
     QRadioButton *radioButton_3;
+    QLabel *label_fn_error;
+    QLabel *label_ln_error;
+    QLabel *label_tlf_error;
+    QLabel *label_name_error;
+    QLabel *label_age_error;
 
     void setupUi(QDialog *CheckInWindow)
     {
@@ -117,6 +122,21 @@ public:
         radioButton_3 = new QRadioButton(groupBox_2);
         radioButton_3->setObjectName(QStringLiteral("radioButton_3"));
         radioButton_3->setGeometry(QRect(110, 10, 95, 20));
+        label_fn_error = new QLabel(CheckInWindow);
+        label_fn_error->setObjectName(QStringLiteral("label_fn_error"));
+        label_fn_error->setGeometry(QRect(260, 40, 151, 16));
+        label_ln_error = new QLabel(CheckInWindow);
+        label_ln_error->setObjectName(QStringLiteral("label_ln_error"));
+        label_ln_error->setGeometry(QRect(260, 90, 161, 20));
+        label_tlf_error = new QLabel(CheckInWindow);
+        label_tlf_error->setObjectName(QStringLiteral("label_tlf_error"));
+        label_tlf_error->setGeometry(QRect(260, 140, 161, 16));
+        label_name_error = new QLabel(CheckInWindow);
+        label_name_error->setObjectName(QStringLiteral("label_name_error"));
+        label_name_error->setGeometry(QRect(250, 240, 161, 16));
+        label_age_error = new QLabel(CheckInWindow);
+        label_age_error->setObjectName(QStringLiteral("label_age_error"));
+        label_age_error->setGeometry(QRect(260, 270, 151, 16));
 
         retranslateUi(CheckInWindow);
         QObject::connect(buttonBox, SIGNAL(accepted()), CheckInWindow, SLOT(accept()));
@@ -141,6 +161,11 @@ public:
         groupBox_2->setTitle(QString());
         radioButton_4->setText(QApplication::translate("CheckInWindow", "Male", nullptr));
         radioButton_3->setText(QApplication::translate("CheckInWindow", "Female", nullptr));
+        label_fn_error->setText(QString());
+        label_ln_error->setText(QString());
+        label_tlf_error->setText(QString());
+        label_name_error->setText(QString());
+        label_age_error->setText(QString());
     } // retranslateUi
 
 };

@@ -17,9 +17,7 @@ CheckOutWindow::CheckOutWindow(QWidget *parent) :
     pix = pix.scaled(this->size(), Qt::IgnoreAspectRatio);
     QPalette palette;
     palette.setBrush(QPalette::Background, pix);
-    //ui->backgroundImg->setPixmap(pix);
     this->setPalette(palette);
-    //ui->backgroundImg->setScaledContents(true);
 }
 
 CheckOutWindow::~CheckOutWindow()
@@ -27,28 +25,59 @@ CheckOutWindow::~CheckOutWindow()
     delete ui;
 }
 
+bool CheckOutWindow::checkAllInput(string itlf, string iname) {
+    Customer c;
+    bool tlf = c.checkTlfNr(itlf);
+    bool name = c.checkName(iname);
+
+    if(tlf && name) {
+        return true;
+    }
+
+    if(!tlf) {
+        ui->label_tlf_error->setText("Feil i tlf!");
+    } else {
+        ui->label_tlf_error->setText("");
+    }
+
+    if(!name) {
+        ui->label_name_error->setText("Feil i navn!");
+    } else {
+        ui->label_name_error->setText("");
+    }
+
+    return true;
+}
+
 void CheckOutWindow::on_buttonBox_accepted()
 {
-    string tlfNr = ui->inputFindTlf->text().toStdString();
-    string name = ui->inputFindName->text().toStdString();
-
-    QMessageBox msgBox;
-    string msg = "";
-
-    msg += tlfNr + " " + name;
-
-    int tlf = stoi(tlfNr);
-
-    msgBox.setText(QString::fromStdString(msg));
-    msgBox.exec();
-
     Database mydb;
     mydb.startDB();
 
-    mydb.deleteAnimal(tlf, name);
+    //Input
+    int tlfNr = ui->inputFindTlf->text().toInt();
+    string name = ui->inputFindName->text().toStdString();
+
+    //QMessageBox msgBox;
+    //string msg = "";
+
+    bool correctInput = checkAllInput(to_string(tlfNr), name);
+
+    if(correctInput) {
+        int animalId = mydb.getAnimalId(tlfNr, name);
+        mydb.removeAnimalFromCage(animalId);
+        mydb.deleteAnimal(tlfNr, name);
+
+        //msg += to_string(tlfNr) + " " + name + " is removed";
+
+        //msgBox.setText(QString::fromStdString(msg));
+        //msgBox.exec();
+
+        //this->close();
+    }
 }
 
 void CheckOutWindow::on_buttonBox_rejected()
 {
-    this->close();
+    //this->close();
 }

@@ -24,6 +24,8 @@ public:
     void setCustomer();
     Customer getCustomer();
     string printAnimal();
+    bool checkName(string iname);
+    bool checkAge(string iage);
 
 protected:
     int id;

@@ -495,13 +495,11 @@ string Database::getNumbersOfFreeCatCages() {
         //Noe gikk galt..
     } else {
         QSqlQuery qry;
-
         if(qry.exec("SELECT COUNT(*) FROM Cages WHERE type='Cat' AND isEmpty=0;")) {
             if(qry.next()) {
                 cagesNr = qry.value(0).toString().toStdString();
             }
         }
-
         mydb.close();
     }
     return cagesNr;
@@ -514,13 +512,11 @@ string Database::getNumbersOfFreeDogCages() {
         //Noe gikk galt..
     } else {
         QSqlQuery qry;
-
         if(qry.exec("SELECT COUNT(*) FROM Cages WHERE type='Dog' AND isEmpty=0;")) {
             if(qry.next()) {
                 cagesNr = qry.value(0).toString().toStdString();
             }
         }
-
         mydb.close();
     }
     return cagesNr;
@@ -568,7 +564,7 @@ void Database::setCatInCage(int animalId) {
     } else {
         QSqlQuery qry;
         qry.prepare("UPDATE Cages SET animalId= :aid, isEmpty=1 WHERE type='Cat' AND cageID="
-                 "(SELECT cageID FROM Cages WHERE isEmpty=0 ORDER BY cageNr);");
+                 "(SELECT cageID FROM Cages WHERE isEmpty=0 AND type='Cat' ORDER BY cageNr);");
         qry.bindValue(":aid", animalId);
         qry.exec();
         mydb.close();
@@ -581,7 +577,19 @@ void Database::setDogInCage(int animalId) {
     } else {
         QSqlQuery qry;
         qry.prepare("UPDATE Cages SET animalId= :aid, isEmpty=1 WHERE Type='Dog' AND cageID="
-                    "(SELECT cageID FROM Cages WHERE isEmpty=0 ORDER BY cageNr);");
+                    "(SELECT cageID FROM Cages WHERE isEmpty=0 AND type='Dog' ORDER BY cageNr);");
+        qry.bindValue(":aid", animalId);
+        qry.exec();
+        mydb.close();
+    }
+}
+
+void Database::removeAnimalFromCage(int animalId) {
+    if(!mydb.open()) {
+        //Noe gikk galt..
+    } else {
+        QSqlQuery qry;
+        qry.prepare("UPDATE Cages SET animalId= NULL, isEmpty=0 WHERE animalId= :aid;");
         qry.bindValue(":aid", animalId);
         qry.exec();
         mydb.close();

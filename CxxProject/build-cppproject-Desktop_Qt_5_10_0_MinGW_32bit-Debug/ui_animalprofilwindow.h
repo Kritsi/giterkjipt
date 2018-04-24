@@ -56,6 +56,7 @@ public:
     QLabel *label_owner;
     QLabel *labe_tlf;
     QLabel *label_9;
+    QPushButton *btn_Img;
 
     void setupUi(QDialog *AnimalProfilWindow)
     {
@@ -191,6 +192,9 @@ public:
 
         formLayout_2->setWidget(1, QFormLayout::LabelRole, label_9);
 
+        btn_Img = new QPushButton(AnimalProfilWindow);
+        btn_Img->setObjectName(QStringLiteral("btn_Img"));
+        btn_Img->setGeometry(QRect(10, 210, 31, 28));
 
         retranslateUi(AnimalProfilWindow);
 
@@ -222,6 +226,7 @@ public:
         label_owner->setText(QApplication::translate("AnimalProfilWindow", "Eier", nullptr));
         labe_tlf->setText(QApplication::translate("AnimalProfilWindow", "Tlf", nullptr));
         label_9->setText(QApplication::translate("AnimalProfilWindow", "TlfNr:", nullptr));
+        btn_Img->setText(QApplication::translate("AnimalProfilWindow", "Img", nullptr));
     } // retranslateUi
 
 };

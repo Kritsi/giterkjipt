@@ -21,21 +21,7 @@ public:
     void addSpecialNeeds(Customer owner, QString animalName, QString specialNeedsText);
     Customer createCustomer(int tlf);
     bool searchCustomer(int tlf);
-<<<<<<< HEAD
-    int getAnimalId(int tlfNr, string animalName);
-    string getAnimalAge(int animalId);
-    string getAnimalOwner(int animalId);
-    string getAnimalType(int animalId);
-    string getAnimalSex(int animalId);
-    string getAnimalNeeds(int animalId);
     string getAnimalCheckInDate(int animalId);
-    string getNumbersOfCages();
-    string getNumbersOfCatCages();
-    string getNumbersOfDogCages();
-    string getNumbersOfFreeCages();
-    string getNumbersOfFreeCatCages();
-    string getNumbersOfFreeDogCages();
-=======
     void setAnimalPic(int animalid, QString path);
     void insertAnimalPic(int animalid, QString path);
     QString getAnimalPic(int animalid);
@@ -51,7 +37,6 @@ public:
     int getNumbersOfFreeCages();
     int getNumbersOfFreeCatCages();
     int getNumbersOfFreeDogCages();
->>>>>>> master
     bool checkFreeCatCages();
     bool checkFreeDogCages();
     void setCatInCage(int animalId);

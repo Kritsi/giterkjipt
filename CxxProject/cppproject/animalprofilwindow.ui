@@ -148,17 +148,10 @@
   <widget class="QWidget" name="formLayoutWidget">
    <property name="geometry">
     <rect>
-<<<<<<< HEAD
      <x>240</x>
      <y>40</y>
      <width>261</width>
      <height>117</height>
-=======
-     <x>60</x>
-     <y>210</y>
-     <width>401</width>
-     <height>20</height>
->>>>>>> master
     </rect>
    </property>
    <layout class="QFormLayout" name="formLayout">

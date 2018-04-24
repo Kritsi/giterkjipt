@@ -1,22 +1,20 @@
 #include "initdb.h"
 #include <QtSql>
 
-initdb::initdb()
+initdb::initdb(QString path)
 {
-
-}
-
-void initdb::initDatabase(QString path){
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(path);
     db.open();
 
     initAnimals();
-    initCages();
-    initCageRows();
     initCustomer();
     initLog();
     initUsers();
+    initPictures();
+    initCages();
+    initCageRows();
+
     db.close();
 }
 
@@ -29,8 +27,12 @@ void initdb::initAnimals(){
                "`type`	TEXT,"
                "`isFemale`	INTEGER,"
                "`specialNeeds`	INTEGER,"
-               "`specialNeedsText`	TEXT,`customerNr`	INTEGER,"
-               "FOREIGN KEY(`customerNr`) REFERENCES `Customer`(`customerNr`) ON DELETE SET NULL);");
+               "`specialNeedsText`	TEXT,"
+               "`customerNr`	INTEGER,"
+               "`checkInDate`	TEXT,"
+               "`checkOutDate`	TEXT,"
+               "FOREIGN KEY(`customerNr`) REFERENCES `Customer`(`customerNr`) ON DELETE SET NULL"
+           ");");
 }
 
 
@@ -66,6 +68,15 @@ void initdb::initUsers(){
                   "`Salt`	TEXT,"
                    "`Password`	TEXT,"
                    "`Uid`	INTEGER PRIMARY KEY AUTOINCREMENT);");
+}
+
+void initdb::initPictures(){
+    QSqlQuery query;
+    query.exec("CREATE TABLE `Pictures` ("
+               "`animalID`	INTEGER,"
+               "`picLocation`	TEXT,"
+               "FOREIGN KEY(`animalID`) REFERENCES `Animal`(`animalId`),"
+               "PRIMARY KEY(`animalID`));");
 }
 
 void initdb::initCages(){

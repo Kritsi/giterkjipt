@@ -16,7 +16,7 @@ public:
     explicit textBox(QWidget *parent = 0);
     ~textBox();
     void setCustomer(Customer c);
-    void setAnimalName(string aname);
+    void setAnimalName(QString aname);
 
 private slots:
     void on_pushButton_clicked();
@@ -24,7 +24,7 @@ private slots:
 private:
     Ui::textBox *ui;
     Customer customer;
-    string animalName;
+    QString animalName;
 };
 
 #endif // TEXTBOX_H

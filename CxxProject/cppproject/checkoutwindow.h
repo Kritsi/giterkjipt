@@ -16,11 +16,10 @@ class CheckOutWindow : public QDialog
 public:
     explicit CheckOutWindow(QWidget *parent = 0);
     ~CheckOutWindow();
-    bool checkAllInput(string itlf, string iname);
+    bool checkAllInput(QString itlf, QString iname);
 
 private slots:
     void on_buttonBox_accepted();
-
     void on_buttonBox_rejected();
 
 private:

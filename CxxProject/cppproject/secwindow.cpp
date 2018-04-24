@@ -14,29 +14,22 @@ secWindow::secWindow(QWidget *parent) :
     ui(new Ui::secWindow)
 {
     ui->setupUi(this);
+    setBackground("../cats.png");
 
-    QPixmap pix("../cats.png");
-    pix = pix.scaled(this->size(), Qt::IgnoreAspectRatio);
-    QPalette palette;
-    palette.setBrush(QPalette::Background, pix);
-    this->setPalette(palette);
+    db.startDB();
+    if(db.checkDB()) {
 
-    Database mydb;
-    mydb.startDB();
-    if(!mydb.getMydb().open()) {
-    } else {
         QSqlQueryModel * model = new QSqlQueryModel();
-        QSqlQuery* qry = new QSqlQuery(mydb.getMydb());
+        QSqlQuery* qry = new QSqlQuery(db.getMydb());
 
         qry->exec("SELECT a.name as 'Animal name', a.type as Type, ca.cageNr as 'Cage number', c.firstname as 'First name', c.lastname as 'Last name', "
                   "c.tlfNr as 'Telephone number' FROM Animal as a, Customer as c, Cages as ca "
                   "WHERE a.customerNr = c.customerNr AND a.animalId = ca.animalID AND ca.isEmpty=1");
-        qry->exec();
 
         model->setQuery(*qry);
         ui->tableView_Animals->setModel(model);
 
-        mydb.getMydb().close();
+        db.closeDB();
     }
 
     QPixmap pix2("../catdog.jpg");
@@ -47,6 +40,14 @@ secWindow::secWindow(QWidget *parent) :
 secWindow::~secWindow()
 {
     delete ui;
+}
+
+void secWindow::setBackground(QString path){
+    QPixmap pix(path);
+    pix = pix.scaled(this->size(), Qt::IgnoreAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Background, pix);
+    this->setPalette(palette);
 }
 
 void secWindow::on_btnCheckIn_clicked()
@@ -64,23 +65,18 @@ void secWindow::on_btnCheckOut_clicked()
 }
 
 void secWindow::on_tester_clicked() {
-    Database mydb;
-    mydb.startDB();
-    if(!mydb.getMydb().open()) {
-        //Noe gikk galt..
-    } else {
+    db.startDB();
+    if(db.checkDB()) {
         QSqlQueryModel * model = new QSqlQueryModel();
-        QSqlQuery* qry = new QSqlQuery(mydb.getMydb());
+        QSqlQuery* qry = new QSqlQuery(db.getMydb());
 
         qry->exec("SELECT a.name as 'Animal name', a.type as Type, ca.cageNr as 'Cage number', c.firstname as 'First name', c.lastname as 'Last name', "
                   "c.tlfNr as 'Telephone number' FROM Animal as a, Customer as c, Cages as ca "
                   "WHERE a.customerNr = c.customerNr AND a.animalId = ca.animalID AND ca.isEmpty=1");
-        qry->exec();
-
         model->setQuery(*qry);
         ui->tableView_Animals->setModel(model);
 
-        mydb.getMydb().close();
+        db.closeDB();
     }
 }
 
@@ -98,14 +94,11 @@ void secWindow::on_pushButton_clicked()
         search2 = matches[2];
     }
 
-    Database mydb;
-    mydb.startDB();
+    db.startDB();
 
-    if(!mydb.getMydb().open()) {
-        //Noe gikk galt
-    } else {
+    if(db.checkDB()) {
         QSqlQueryModel * model = new QSqlQueryModel();
-        QSqlQuery* qry = new QSqlQuery(mydb.getMydb());
+        QSqlQuery* qry = new QSqlQuery(db.getMydb());
 
         qry->prepare("SELECT a.name as 'Animal name', a.type as Type, ca.cageNr as 'Cage number', c.firstname as 'First name', c.lastname as 'Last name', c.tlfNr as 'Telephone number'"
                   "FROM Animal as a, Customer as c, Cages as ca WHERE a.customerNr = c.customerNr AND a.animalId = ca.animalID "
@@ -118,20 +111,21 @@ void secWindow::on_pushButton_clicked()
         model->setQuery(*qry);
         ui->tableView_Animals->setModel(model);
 
-        mydb.getMydb().close();
+        db.closeDB();
     }
 }
 
 void secWindow::on_tableView_Animals_activated(const QModelIndex &index)
 {
-    //Henter informasjon fra tabellen
-    string animalIndex = ui->tableView_Animals->model()->data(index).toString().toStdString();
+    QString animalIndex = ui->tableView_Animals->model()->data(index).toString();
     QAbstractItemModel *model = ui->tableView_Animals->model();
     int rowidx = ui->tableView_Animals->selectionModel()->currentIndex().row();
-    string aname = model->index(rowidx, 0).data().toString().toStdString();
+    QString aname = model->index(rowidx, 0).data().toString();
     int atlf = model->index(rowidx, 5).data().toInt();
 
+    //Opens Animal Profile Window with data from table
     AnimalProfilWindow animalprofil;
+<<<<<<< HEAD
     Database mydb;
     mydb.startDB();
     //Henter ut dyre info
@@ -145,49 +139,52 @@ void secWindow::on_tableView_Animals_activated(const QModelIndex &index)
     //Åpner dyreprofil med riktig informasjon
     animalprofil.setAnimalInfo(aname, animalAge, animalOwner, atlf, animalSex, animalNeeds, animalCheckIn);
     animalprofil.setAnimalPic(animalType);
+=======
+    animalprofil.setAnimalInfo(aname, atlf);
+>>>>>>> master
     animalprofil.showAnimalInfo();
     animalprofil.getLogEntries();
     animalprofil.setModal(true);
     animalprofil.exec();
 }
 
-void secWindow::setUsername(string uname) {
+void secWindow::setUsername(QString uname) {
     username = uname;
 }
 
-void secWindow::setTotalCages(string tcages) {
+void secWindow::setTotalCages(int tcages) {
     totalCages = tcages;
 }
 
-void secWindow::setTotalCatCages(string tcages) {
+void secWindow::setTotalCatCages(int tcages) {
     totalCatCages = tcages;
 }
 
-void secWindow::setTotalDogCages(string tcages) {
+void secWindow::setTotalDogCages(int tcages) {
     totalDogCages = tcages;
 }
 
-void secWindow::setTotalFreeCatCages(string tcages) {
+void secWindow::setTotalFreeCatCages(int tcages) {
     totalFreeCatCages = tcages;
 }
 
-void secWindow::setTotalFreeDogCages(string tcages) {
+void secWindow::setTotalFreeDogCages(int tcages) {
     totalFreeDogCages = tcages;
 }
 
-void secWindow::setTotalFreeCages(string tcages) {
+void secWindow::setTotalFreeCages(int tcages) {
     totalFreeCages = tcages;
 }
 
 void secWindow::showMainInfo() {
-    ui->label_username->setText(QString::fromStdString(username));
-    ui->label_hotelname->setText(QString::fromStdString("Fjordgløtt hotell"));
-    ui->label_tlf->setText(QString::fromStdString("41607716"));
-    ui->label_adr->setText(QString::fromStdString("Solbakken 12, 1392"));
-    ui->label_totelCages->setText(QString::fromStdString(totalCages));
-    ui->label_Cat->setText(QString::fromStdString(totalCatCages));
-    ui->label_dog->setText(QString::fromStdString(totalDogCages));
-    ui->label_freeCatCages->setText(QString::fromStdString(totalFreeCatCages));
-    ui->label_freeDogCages->setText(QString::fromStdString(totalFreeDogCages));
-    ui->label_freeCages->setText(QString::fromStdString(totalFreeCages));
+    ui->label_username->setText(username);
+    ui->label_hotelname->setText("Fjordgløtt hotell");
+    ui->label_tlf->setText("41607716");
+    ui->label_adr->setText("Solbakken 12, 1392");
+    ui->label_totelCages->setText(QString::number(totalCages));
+    ui->label_Cat->setText(QString::number(totalCatCages));
+    ui->label_dog->setText(QString::number(totalDogCages));
+    ui->label_freeCatCages->setText(QString::number(totalFreeCatCages));
+    ui->label_freeDogCages->setText(QString::number(totalFreeDogCages));
+    ui->label_freeCages->setText(QString::number(totalFreeCages));
 }

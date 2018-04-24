@@ -35,19 +35,19 @@ void userExistsWindow::setCusomerName() {
 
     Customer c = mydb.createCustomer(tlfnr);
 
-    string cName = c.getFirstName() + " " + c.getLastName();
+    QString cName = c.getFirstName() + " " + c.getLastName();
 
-    ui->nameCustomer->setText(QString::fromStdString(cName));
+    ui->nameCustomer->setText(cName);
 }
 
-void userExistsWindow::setAnimalType(string type) {
+void userExistsWindow::setAnimalType(QString type) {
     animalType = type;
 }
 
-bool userExistsWindow::checkAllInput(string iname, string iage) {
+bool userExistsWindow::checkAllInput(QString iname, QString iage) {
     Animal a;
-    bool name = a.checkName(iname);
-    bool age = a.checkAge(iage);
+    bool name = a.checkName(iname.toStdString());
+    bool age = a.checkAge(iage.toStdString());
 
     if(name && age) {
         return true;
@@ -79,12 +79,16 @@ void userExistsWindow::on_buttonBox_accepted()
     //Animal
     Animal a;
     bool isFemale = ui->radioButton_5->isChecked();
-    string name = ui->inputName->text().toStdString();
+    QString name = ui->inputName->text();
     int age = ui->inputAge->text().toInt();
     bool specialNeeds = ui->checkBox->checkState();
 
     //Check Input
+<<<<<<< HEAD
     bool correctInput = checkAllInput(name, to_string(age));
+=======
+    bool correctInput = checkAllInput(name, QString::number(age));
+>>>>>>> master
 
     if(correctInput) {
         mydb.insertCustomer(c.getFirstName(), c.getLastName(), tlfnr);

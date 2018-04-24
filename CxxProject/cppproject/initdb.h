@@ -5,14 +5,14 @@
 class initdb
 {
 public:
-    initdb();
-    void initDatabase(QString path);
+    initdb(QString path);
 private:
     void initAnimals();
-    void initCages();
     void initCustomer();
     void initLog();
     void initUsers();
+    void initPictures();
+    void initCages();
     void initCageRows();
 };
 

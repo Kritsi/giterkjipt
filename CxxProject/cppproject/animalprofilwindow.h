@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <iostream>
+#include "db.h"
 
 using namespace std;
 
@@ -18,26 +19,33 @@ public:
     explicit AnimalProfilWindow(QWidget *parent = 0);
     ~AnimalProfilWindow();
 
+<<<<<<< HEAD
     void setAnimalInfo(string iname, string iage, string iowner, int tlf, string sex, string needs, string checkIn);
+=======
+    void setAnimalInfo(QString iname, int tlf);
+>>>>>>> master
     void showAnimalInfo();
-    void setAnimalPic(string animalType);
+    void setDefaultPic(QString animalType);
+    void setPic(QString path);
     void getLogEntries();
 
 private slots:
     void on_btnLogFood_clicked();
-
     void on_btnLogClean_clicked();
-
     void on_btnLogCustom_clicked();
+    void on_btn_Img_clicked();
 
 private:
+    Database db;
     Ui::AnimalProfilWindow *ui;
-    string name;
-    string age;
-    string owner;
+    QString name;
+    QString owner;
+    QString animalType;
+    QString sex;
+    QString sNeeds;
+    QString animalPic;
+    int age;
     int tlfNr;
-    string sex;
-    string sNeeds;
     int animalID;
     string checkInDate;
 };

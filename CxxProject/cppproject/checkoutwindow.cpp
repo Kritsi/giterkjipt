@@ -25,10 +25,10 @@ CheckOutWindow::~CheckOutWindow()
     delete ui;
 }
 
-bool CheckOutWindow::checkAllInput(string itlf, string iname) {
+bool CheckOutWindow::checkAllInput(QString itlf, QString iname) {
     Customer c;
-    bool tlf = c.checkTlfNr(itlf);
-    bool name = c.checkName(iname);
+    bool tlf = c.checkTlfNr(itlf.toStdString());
+    bool name = c.checkName(iname.toStdString());
 
     if(tlf && name) {
         return true;
@@ -56,24 +56,14 @@ void CheckOutWindow::on_buttonBox_accepted()
 
     //Input
     int tlfNr = ui->inputFindTlf->text().toInt();
-    string name = ui->inputFindName->text().toStdString();
+    QString name = ui->inputFindName->text();
 
-    //QMessageBox msgBox;
-    //string msg = "";
-
-    bool correctInput = checkAllInput(to_string(tlfNr), name);
+    bool correctInput = checkAllInput(QString::number(tlfNr), name);
 
     if(correctInput) {
         int animalId = mydb.getAnimalId(tlfNr, name);
         mydb.removeAnimalFromCage(animalId);
         mydb.deleteAnimal(tlfNr, name);
-
-        //msg += to_string(tlfNr) + " " + name + " is removed";
-
-        //msgBox.setText(QString::fromStdString(msg));
-        //msgBox.exec();
-
-        //this->close();
     }
 }
 

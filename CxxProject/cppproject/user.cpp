@@ -16,7 +16,7 @@ user::~user()
     delete ui;
 }
 
-void user::setAnimalType(string type) {
+void user::setAnimalType(QString type) {
     animalType = type;
 }
 

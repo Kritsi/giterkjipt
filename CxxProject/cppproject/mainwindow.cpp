@@ -31,7 +31,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-bool MainWindow::loginUser (string username, string password) {
+bool MainWindow::loginUser (QString username, string password) {
     db.startDB();
     vector<string> output = db.getPasswordInfo(username);
     string passordhash = output[0];
@@ -39,7 +39,7 @@ bool MainWindow::loginUser (string username, string password) {
 
     if(passordhash.empty()){
         QMessageBox msgBox;
-        msgBox.setText(QString::fromStdString("Please enter valid login information"));
+        msgBox.setText("Please enter valid login information");
         msgBox.exec();
         return false;
     }else{
@@ -51,29 +51,24 @@ bool MainWindow::loginUser (string username, string password) {
 }
 
 bool MainWindow::checkPassword(string dbPass, string inputPass){
-    db.startDB();
-    QMessageBox msgBox;
-    msgBox.setText(QString::fromStdString(inputPass+"   "+dbPass));
-    msgBox.exec();
-
     return (dbPass.compare(inputPass) == 0);
 }
 
 void MainWindow::on_Login_clicked()
 {
     db.startDB();
-    string usnm = ui->leUsername->text().toStdString();
+    QString usnm = ui->leUsername->text();
     string pswd = ui->lePassword->text().toStdString();
 
 
     if(db.UserExists(usnm)){
         if(loginUser(usnm, pswd)){
-            string totalCagesNr = db.getNumbersOfCages();
-            string totalCagesCat = db.getNumbersOfCatCages();
-            string totalCagesDog = db.getNumbersOfDogCages();
-            string totalFreeCages = db.getNumbersOfFreeCages();
-            string totalFreeCagesCat = db.getNumbersOfFreeCatCages();
-            string totalFreeCagesDog = db.getNumbersOfFreeDogCages();
+            int totalCagesNr = db.getNumbersOfCages();
+            int totalCagesCat = db.getNumbersOfCatCages();
+            int totalCagesDog = db.getNumbersOfDogCages();
+            int totalFreeCages = db.getNumbersOfFreeCages();
+            int totalFreeCagesCat = db.getNumbersOfFreeCatCages();
+            int totalFreeCagesDog = db.getNumbersOfFreeDogCages();
             secWindow secwin;
             secwin.setUsername(usnm);
             secwin.setTotalCages(totalCagesNr);

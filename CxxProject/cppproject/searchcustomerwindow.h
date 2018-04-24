@@ -16,14 +16,14 @@ class searchCustomerWindow : public QDialog
 public:
     explicit searchCustomerWindow(QWidget *parent = 0);
     ~searchCustomerWindow();
-    void setAnimalType(string type);
+    void setAnimalType(QString type);
 
 private slots:
     void on_pushButton_clicked();
 
 private:
     Ui::searchCustomerWindow *ui;
-    string animalType;
+    QString animalType;
 };
 
 #endif // SEARCHCUSTOMERWINDOW_H

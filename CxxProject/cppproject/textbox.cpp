@@ -21,12 +21,12 @@ void textBox::setCustomer(Customer c) {
     customer = c;
 }
 
-void textBox::setAnimalName(string aname) {
+void textBox::setAnimalName(QString aname) {
     animalName = aname;
 }
 
 void textBox::on_pushButton_clicked() {
-    string text = ui->textEdit->toPlainText().toStdString();
+    QString text = ui->textEdit->toPlainText();
     Database mydb;
     mydb.startDB();
 

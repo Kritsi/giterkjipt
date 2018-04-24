@@ -2,7 +2,7 @@
 #define SECWINDOW_H
 
 #include <QDialog>
-
+#include "db.h"
 using namespace std;
 
 namespace Ui {
@@ -16,13 +16,14 @@ class secWindow : public QDialog
 public:
     explicit secWindow(QWidget *parent = 0);
     ~secWindow();
-    void setUsername(string uname);
-    void setTotalCages(string tcages);
-    void setTotalCatCages(string tcages);
-    void setTotalDogCages(string tcages);
-    void setTotalFreeCages(string tcages);
-    void setTotalFreeCatCages(string tcages);
-    void setTotalFreeDogCages(string tcages);
+    void setBackground(QString path);
+    void setUsername(QString uname);
+    void setTotalCages(int tcages);
+    void setTotalCatCages(int tcages);
+    void setTotalDogCages(int tcages);
+    void setTotalFreeCages(int tcages);
+    void setTotalFreeCatCages(int tcages);
+    void setTotalFreeDogCages(int tcages);
     void showMainInfo();
 
 private slots:
@@ -38,14 +39,15 @@ private slots:
     void on_tableView_Animals_activated(const QModelIndex &index);
 
 private:
+    Database db;
     Ui::secWindow *ui;
-    string username;
-    string totalCages;
-    string totalCatCages;
-    string totalDogCages;
-    string totalFreeCages;
-    string totalFreeCatCages;
-    string totalFreeDogCages;
+    QString username;
+    int totalCages;
+    int totalCatCages;
+    int totalDogCages;
+    int totalFreeCages;
+    int totalFreeCatCages;
+    int totalFreeDogCages;
 };
 
 #endif // SECWINDOW_H

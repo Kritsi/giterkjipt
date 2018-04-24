@@ -18,7 +18,7 @@ public:
     explicit AnimalProfilWindow(QWidget *parent = 0);
     ~AnimalProfilWindow();
 
-    void setAnimalInfo(string iname, string iage, string iowner, int tlf, string sex, string needs);
+    void setAnimalInfo(string iname, string iage, string iowner, int tlf, string sex, string needs, string checkIn);
     void showAnimalInfo();
     void setAnimalPic(string animalType);
     void getLogEntries();
@@ -39,6 +39,7 @@ private:
     string sex;
     string sNeeds;
     int animalID;
+    string checkInDate;
 };
 
 #endif // ANIMALPROFILWINDOW_H

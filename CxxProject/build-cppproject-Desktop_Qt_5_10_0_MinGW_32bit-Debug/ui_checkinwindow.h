@@ -77,7 +77,7 @@ public:
         inputName->setGeometry(QRect(120, 240, 113, 22));
         inputAge = new QLineEdit(CheckInWindow);
         inputAge->setObjectName(QStringLiteral("inputAge"));
-        inputAge->setGeometry(QRect(120, 270, 113, 22));
+        inputAge->setGeometry(QRect(120, 280, 113, 22));
         label = new QLabel(CheckInWindow);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(120, 210, 55, 16));
@@ -92,7 +92,7 @@ public:
         label_5->setGeometry(QRect(30, 150, 81, 16));
         label_7 = new QLabel(CheckInWindow);
         label_7->setObjectName(QStringLiteral("label_7"));
-        label_7->setGeometry(QRect(30, 270, 81, 16));
+        label_7->setGeometry(QRect(30, 280, 81, 16));
         label_8 = new QLabel(CheckInWindow);
         label_8->setObjectName(QStringLiteral("label_8"));
         label_8->setGeometry(QRect(30, 240, 81, 16));
@@ -136,7 +136,7 @@ public:
         label_name_error->setGeometry(QRect(250, 240, 161, 16));
         label_age_error = new QLabel(CheckInWindow);
         label_age_error->setObjectName(QStringLiteral("label_age_error"));
-        label_age_error->setGeometry(QRect(260, 270, 151, 16));
+        label_age_error->setGeometry(QRect(250, 280, 151, 16));
 
         retranslateUi(CheckInWindow);
         QObject::connect(buttonBox, SIGNAL(accepted()), CheckInWindow, SLOT(accept()));

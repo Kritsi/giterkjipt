@@ -18,7 +18,7 @@ AnimalProfilWindow::~AnimalProfilWindow()
 
 void AnimalProfilWindow::setAnimalPic(string animalType) {
     if(animalType == "Cat") {
-        QPixmap pix("../Nussi.jpg");
+        QPixmap pix("../catsmile.jpg");
         ui->labelImg->setPixmap(pix);
         ui->labelImg->setScaledContents(true);
     } else {
@@ -28,7 +28,7 @@ void AnimalProfilWindow::setAnimalPic(string animalType) {
     }
 }
 
-void AnimalProfilWindow::setAnimalInfo(string iname, string iage, string iowner, int tlf, string isex, string needs) {
+void AnimalProfilWindow::setAnimalInfo(string iname, string iage, string iowner, int tlf, string isex, string needs, string checkIn) {
     Database mydb;
     mydb.startDB();
 
@@ -38,6 +38,7 @@ void AnimalProfilWindow::setAnimalInfo(string iname, string iage, string iowner,
     tlfNr = tlf;
     sex = isex;
     sNeeds = needs;
+    checkInDate = checkIn;
 
     animalID = mydb.getAnimalId(tlf,name);
 
@@ -51,6 +52,7 @@ void AnimalProfilWindow::showAnimalInfo() {
     ui->labe_tlf->setText(QString::fromStdString(to_string(tlfNr)));
     ui->label_sex->setText(QString::fromStdString(sex));
     ui->label_specialNeeds->setText(QString::fromStdString(sNeeds));
+    ui->label_checkInDate->setText(QString::fromStdString(checkInDate));
 }
 
 
@@ -74,7 +76,6 @@ void AnimalProfilWindow::getLogEntries(){
         ui->tableView_log->setModel(model);
         mydb.closeDB();
     }
-
 }
 
 void AnimalProfilWindow::on_btnLogFood_clicked()

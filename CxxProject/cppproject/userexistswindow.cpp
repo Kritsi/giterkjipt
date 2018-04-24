@@ -84,7 +84,7 @@ void userExistsWindow::on_buttonBox_accepted()
     bool specialNeeds = ui->checkBox->checkState();
 
     //Check Input
-    bool correctInput = false;//checkAllInput(name, to_string(age));
+    bool correctInput = checkAllInput(name, to_string(age));
 
     if(correctInput) {
         mydb.insertCustomer(c.getFirstName(), c.getLastName(), tlfnr);

@@ -20,7 +20,7 @@
    <string>KennelSoft</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="1">
+   <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <property name="tabPosition">
       <enum>QTabWidget::North</enum>
@@ -47,6 +47,12 @@
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
          <widget class="QPushButton" name="btnCheckIn">
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color:#ffa0ca;</string>
+          </property>
           <property name="text">
            <string>Check In</string>
           </property>
@@ -54,6 +60,9 @@
         </item>
         <item>
          <widget class="QPushButton" name="btnCheckOut">
+          <property name="styleSheet">
+           <string notr="true">background-color:#a0d4ff;</string>
+          </property>
           <property name="text">
            <string>Check Out</string>
           </property>
@@ -64,138 +73,24 @@
       <widget class="QLabel" name="label_hotelname">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>40</y>
+         <x>30</x>
+         <y>20</y>
          <width>241</width>
-         <height>16</height>
+         <height>51</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font-size: 30px; </string>
        </property>
        <property name="text">
         <string>Hotell navn</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_3">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>120</y>
-         <width>131</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Antall plasser </string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_totelCages">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>150</y>
-         <width>55</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>50</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_freeCages">
-       <property name="geometry">
-        <rect>
-         <x>120</x>
-         <y>150</y>
-         <width>55</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>22</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_6">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>190</y>
-         <width>141</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Antall plasser hund</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_dog">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>220</y>
-         <width>55</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>25</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_freeDogCages">
-       <property name="geometry">
-        <rect>
-         <x>120</x>
-         <y>220</y>
-         <width>55</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>13</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_9">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>260</y>
-         <width>131</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Antall plasser katt</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_Cat">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>290</y>
-         <width>55</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>25</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_freeCatCages">
-       <property name="geometry">
-        <rect>
-         <x>120</x>
-         <y>290</y>
-         <width>55</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>15</string>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_12">
        <property name="geometry">
         <rect>
-         <x>500</x>
-         <y>40</y>
+         <x>30</x>
+         <y>80</y>
          <width>21</width>
          <height>16</height>
         </rect>
@@ -207,8 +102,8 @@
       <widget class="QLabel" name="label_username">
        <property name="geometry">
         <rect>
-         <x>520</x>
-         <y>40</y>
+         <x>50</x>
+         <y>80</y>
          <width>151</width>
          <height>16</height>
         </rect>
@@ -217,31 +112,203 @@
         <string>Username</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_tlf">
+      <widget class="QWidget" name="formLayoutWidget">
        <property name="geometry">
         <rect>
          <x>460</x>
-         <y>380</y>
-         <width>211</width>
-         <height>16</height>
+         <y>80</y>
+         <width>231</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <layout class="QFormLayout" name="formLayout">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>Hotel info:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>TlfNr:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Adresse:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLabel" name="label_adr">
+          <property name="text">
+           <string>Adresse</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="label_tlf">
+          <property name="text">
+           <string>Tlf</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QLabel" name="label_img">
+       <property name="geometry">
+        <rect>
+         <x>420</x>
+         <y>160</y>
+         <width>221</width>
+         <height>281</height>
         </rect>
        </property>
        <property name="text">
-        <string>Tlf</string>
+        <string/>
        </property>
       </widget>
-      <widget class="QLabel" name="label_adr">
+      <widget class="QWidget" name="verticalLayoutWidget">
        <property name="geometry">
         <rect>
-         <x>460</x>
-         <y>410</y>
-         <width>221</width>
-         <height>16</height>
+         <x>30</x>
+         <y>150</y>
+         <width>231</width>
+         <height>231</height>
         </rect>
        </property>
-       <property name="text">
-        <string>Adresse</string>
-       </property>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="styleSheet">
+           <string notr="true">font-size: 14px; font-weight: bold; color: #333;</string>
+          </property>
+          <property name="text">
+           <string>Antall plasser </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QLabel" name="label_8">
+            <property name="text">
+             <string>Total</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_totelCages">
+            <property name="text">
+             <string>50</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>Ledig </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_freeCages">
+            <property name="text">
+             <string>22</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_6">
+          <property name="styleSheet">
+           <string notr="true">font-size: 14px; font-weight: bold; color: #333;</string>
+          </property>
+          <property name="text">
+           <string>Antall plasser hund</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QLabel" name="label_10">
+            <property name="text">
+             <string>Total</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_dog">
+            <property name="text">
+             <string>25</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_11">
+            <property name="text">
+             <string>Ledig</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_freeDogCages">
+            <property name="text">
+             <string>13</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_9">
+          <property name="styleSheet">
+           <string notr="true">font-size: 14px; font-weight: bold; color: #333;</string>
+          </property>
+          <property name="text">
+           <string>Antall plasser katt</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="QLabel" name="label_13">
+            <property name="text">
+             <string>Total</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_Cat">
+            <property name="text">
+             <string>25</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_14">
+            <property name="text">
+             <string>Ledig</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_freeCatCages">
+            <property name="text">
+             <string>15</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </widget>
      </widget>
      <widget class="QWidget" name="tab_2">

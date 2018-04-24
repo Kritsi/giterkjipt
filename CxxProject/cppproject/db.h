@@ -27,6 +27,7 @@ public:
     string getAnimalType(int animalId);
     string getAnimalSex(int animalId);
     string getAnimalNeeds(int animalId);
+    string getAnimalCheckInDate(int animalId);
     string getNumbersOfCages();
     string getNumbersOfCatCages();
     string getNumbersOfDogCages();

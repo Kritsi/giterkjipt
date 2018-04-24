@@ -62,7 +62,7 @@ public:
         checkBox->setGeometry(QRect(230, 250, 81, 20));
         inputAge = new QLineEdit(userExistsWindow);
         inputAge->setObjectName(QStringLiteral("inputAge"));
-        inputAge->setGeometry(QRect(120, 140, 113, 22));
+        inputAge->setGeometry(QRect(120, 150, 113, 22));
         label_9 = new QLabel(userExistsWindow);
         label_9->setObjectName(QStringLiteral("label_9"));
         label_9->setGeometry(QRect(30, 210, 81, 16));
@@ -77,7 +77,7 @@ public:
         radioButton_6->setGeometry(QRect(110, 10, 95, 20));
         label_7 = new QLabel(userExistsWindow);
         label_7->setObjectName(QStringLiteral("label_7"));
-        label_7->setGeometry(QRect(30, 140, 81, 16));
+        label_7->setGeometry(QRect(30, 150, 81, 16));
         inputName = new QLineEdit(userExistsWindow);
         inputName->setObjectName(QStringLiteral("inputName"));
         inputName->setGeometry(QRect(120, 110, 113, 22));
@@ -98,7 +98,7 @@ public:
         label_name_error->setGeometry(QRect(250, 110, 151, 16));
         label_age_error = new QLabel(userExistsWindow);
         label_age_error->setObjectName(QStringLiteral("label_age_error"));
-        label_age_error->setGeometry(QRect(250, 140, 151, 16));
+        label_age_error->setGeometry(QRect(250, 150, 151, 16));
 
         retranslateUi(userExistsWindow);
         QObject::connect(buttonBox, SIGNAL(accepted()), userExistsWindow, SLOT(accept()));
@@ -116,7 +116,7 @@ public:
         groupBox_2->setTitle(QString());
         radioButton_5->setText(QApplication::translate("userExistsWindow", "Male", nullptr));
         radioButton_6->setText(QApplication::translate("userExistsWindow", "Female", nullptr));
-        label_7->setText(QApplication::translate("userExistsWindow", "Age", nullptr));
+        label_7->setText(QApplication::translate("userExistsWindow", "Age:", nullptr));
         label_8->setText(QApplication::translate("userExistsWindow", "Name:", nullptr));
         label_10->setText(QApplication::translate("userExistsWindow", "Type:", nullptr));
         label_11->setText(QApplication::translate("userExistsWindow", "Special needs/wishes:", nullptr));

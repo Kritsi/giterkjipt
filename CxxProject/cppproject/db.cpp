@@ -96,16 +96,20 @@ void Database::insertAnimal(Customer c, string iname, int iage, string itype, bo
             }
         }
 
+        QDate datetime;
+        QString time = datetime.currentDate().toString();
+
         msg += "KundeNr: " + to_string(customerNr);
 
-        qry.prepare("INSERT INTO Animal (name, age, type, isFemale, specialNeeds, customerNr) "
-                    "VALUES (?, ?, ?, ?, ?, ?)");
+        qry.prepare("INSERT INTO Animal (name, age, type, isFemale, specialNeeds, customerNr, checkInDate) "
+                    "VALUES (?, ?, ?, ?, ?, ?, ?)");
         qry.bindValue(0, QString::fromStdString(iname));
         qry.bindValue(1, iage);
         qry.bindValue(2, QString::fromStdString(itype));
         qry.bindValue(3, iisFemale);
         qry.bindValue(4, ispecialNeeds);
         qry.bindValue(5, customerNr);
+        qry.bindValue(6, time);
         qry.exec();
 
         mydb.close();
@@ -431,19 +435,34 @@ string Database::getAnimalNeeds(int animalId) {
     return animalNeeds;
 }
 
+string Database::getAnimalCheckInDate(int animalId) {
+    string animalCheckInDate = "";
+
+    if(mydb.open()) {
+        QSqlQuery qry;
+
+        qry.prepare("SELECT checkInDate FROM Animal WHERE animalId= :aid");
+        qry.bindValue(":aid", animalId);
+
+        if(qry.exec())
+            if(qry.next())
+                animalCheckInDate = qry.value(0).toString().toStdString();
+
+        mydb.close();
+    }
+
+    return animalCheckInDate;
+}
+
 string Database::getNumbersOfCages() {
     string cagesNr = "";
 
-    if(!mydb.open()) {
-        //Noe gikk galt..
-    } else {
+    if(mydb.open()) {
         QSqlQuery qry;
 
-        if(qry.exec("SELECT COUNT(*) FROM Cages;")) {
-            if(qry.next()) {
+        if(qry.exec("SELECT COUNT(*) FROM Cages;"))
+            if(qry.next())
                 cagesNr = qry.value(0).toString().toStdString();
-            }
-        }
 
         mydb.close();
     }
@@ -453,16 +472,12 @@ string Database::getNumbersOfCages() {
 string Database::getNumbersOfCatCages() {
     string cagesNr = "";
 
-    if(!mydb.open()) {
-        //Noe gikk galt..
-    } else {
+    if(mydb.open()) {
         QSqlQuery qry;
 
-        if(qry.exec("SELECT COUNT(*) FROM Cages WHERE Type='Cat';")) {
-            if(qry.next()) {
+        if(qry.exec("SELECT COUNT(*) FROM Cages WHERE Type='Cat';"))
+            if(qry.next())
                 cagesNr = qry.value(0).toString().toStdString();
-            }
-        }
 
         mydb.close();
     }

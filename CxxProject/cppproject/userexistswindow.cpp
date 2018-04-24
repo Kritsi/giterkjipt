@@ -84,7 +84,11 @@ void userExistsWindow::on_buttonBox_accepted()
     bool specialNeeds = ui->checkBox->checkState();
 
     //Check Input
+<<<<<<< HEAD
+    bool correctInput = checkAllInput(name, to_string(age));
+=======
     bool correctInput = checkAllInput(name, QString::number(age));
+>>>>>>> master
 
     if(correctInput) {
         mydb.insertCustomer(c.getFirstName(), c.getLastName(), tlfnr);

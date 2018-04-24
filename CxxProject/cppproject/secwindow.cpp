@@ -31,6 +31,10 @@ secWindow::secWindow(QWidget *parent) :
 
         db.closeDB();
     }
+
+    QPixmap pix2("../catdog.jpg");
+    ui->label_img->setPixmap(pix2);
+    ui->label_img->setScaledContents(true);
 }
 
 secWindow::~secWindow()
@@ -121,8 +125,25 @@ void secWindow::on_tableView_Animals_activated(const QModelIndex &index)
 
     //Opens Animal Profile Window with data from table
     AnimalProfilWindow animalprofil;
+<<<<<<< HEAD
+    Database mydb;
+    mydb.startDB();
+    //Henter ut dyre info
+    int animalId = mydb.getAnimalId(atlf, aname);
+    string animalAge = mydb.getAnimalAge(animalId);
+    string animalOwner = mydb.getAnimalOwner(animalId);
+    string animalType = mydb.getAnimalType(animalId);
+    string animalSex = mydb.getAnimalSex(animalId);
+    string animalNeeds = mydb.getAnimalNeeds(animalId);
+    string animalCheckIn = mydb.getAnimalCheckInDate(animalId);
+    //Åpner dyreprofil med riktig informasjon
+    animalprofil.setAnimalInfo(aname, animalAge, animalOwner, atlf, animalSex, animalNeeds, animalCheckIn);
+    animalprofil.setAnimalPic(animalType);
+=======
     animalprofil.setAnimalInfo(aname, atlf);
+>>>>>>> master
     animalprofil.showAnimalInfo();
+    animalprofil.getLogEntries();
     animalprofil.setModal(true);
     animalprofil.exec();
 }

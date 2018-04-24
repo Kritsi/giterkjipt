@@ -17,19 +17,40 @@ AnimalProfilWindow::~AnimalProfilWindow()
     delete ui;
 }
 
+<<<<<<< HEAD
+void AnimalProfilWindow::setAnimalPic(string animalType) {
+    if(animalType == "Cat") {
+        QPixmap pix("../catsmile.jpg");
+        ui->labelImg->setPixmap(pix);
+        ui->labelImg->setScaledContents(true);
+    } else {
+        QPixmap pix("../dog.jpg");
+=======
 
 void AnimalProfilWindow::setPic(QString path) {
         QPixmap pix(path);
+>>>>>>> master
         ui->labelImg->setPixmap(pix);
         ui->labelImg->setScaledContents(true);
 }
 
+<<<<<<< HEAD
+void AnimalProfilWindow::setAnimalInfo(string iname, string iage, string iowner, int tlf, string isex, string needs, string checkIn) {
+    Database mydb;
+    mydb.startDB();
+=======
 void AnimalProfilWindow::setAnimalInfo(QString iname, int tlf) {
 
     db.startDB();
+>>>>>>> master
 
     name = iname;
     tlfNr = tlf;
+<<<<<<< HEAD
+    sex = isex;
+    sNeeds = needs;
+    checkInDate = checkIn;
+=======
     animalID = db.getAnimalId(tlfNr,name);
     age = db.getAnimalAge(animalID);
     owner = db.getAnimalOwner(animalID);
@@ -37,6 +58,7 @@ void AnimalProfilWindow::setAnimalInfo(QString iname, int tlf) {
     sex = db.getAnimalSex(animalID);
     sNeeds = db.getAnimalNeeds(animalID);
     animalPic = db.getAnimalPic(animalID);
+>>>>>>> master
 
     setPic(animalPic);
 
@@ -44,12 +66,22 @@ void AnimalProfilWindow::setAnimalInfo(QString iname, int tlf) {
 }
 
 void AnimalProfilWindow::showAnimalInfo() {
+<<<<<<< HEAD
+    ui->label_name->setText(QString::fromStdString(name));
+    ui->label_age->setText(QString::fromStdString(age));
+    ui->label_owner->setText(QString::fromStdString(owner));
+    ui->labe_tlf->setText(QString::fromStdString(to_string(tlfNr)));
+    ui->label_sex->setText(QString::fromStdString(sex));
+    ui->label_specialNeeds->setText(QString::fromStdString(sNeeds));
+    ui->label_checkInDate->setText(QString::fromStdString(checkInDate));
+=======
     ui->label_name->setText(name);
     ui->label_age->setText(QString::number(age));
     ui->label_owner->setText(owner);
     ui->labe_tlf->setText(QString::number(tlfNr));
     ui->label_sex->setText(sex);
     ui->label_specialNeeds->setText(sNeeds);
+>>>>>>> master
 }
 
 
@@ -73,7 +105,6 @@ void AnimalProfilWindow::getLogEntries(){
         ui->tableView_log->setModel(model);
         db.closeDB();
     }
-
 }
 
 void AnimalProfilWindow::on_btnLogFood_clicked()

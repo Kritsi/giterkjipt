@@ -10,10 +10,10 @@ Employee::Employee() {
     firstname = "";
     lastname = "";
     age = 0;
-    ansattNr = "";
+    ansattNr = 0;
 }
 
-Employee::Employee(string fn, string ln, int a, string aNr) {
+Employee::Employee(QString fn, QString ln, int a, int aNr) {
     firstname = fn;
     lastname = ln;
     age = a;
@@ -23,13 +23,13 @@ Employee::Employee(string fn, string ln, int a, string aNr) {
 void Employee::setAnsattNr(string nr) {
     regex reg("^[0-9]{8}$");
     if(regex_match(nr, reg)) {
-        ansattNr = nr;
+        ansattNr = stoi(nr);
         cout << "Vellyket oppdatering!" << endl;
     } else {
         cout << "Ikke gyldig ansattNr, oppdatering mislykket!" << endl;
     }
 }
 
-string Employee::getAnsattNr() {
+int Employee::getAnsattNr() {
     return ansattNr;
 }

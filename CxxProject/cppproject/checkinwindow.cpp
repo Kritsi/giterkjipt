@@ -26,18 +26,18 @@ CheckInWindow::~CheckInWindow()
     delete ui;
 }
 
-void CheckInWindow::setAnimalType(string type) {
+void CheckInWindow::setAnimalType(QString type) {
     animalType = type;
 }
 
-bool CheckInWindow::checkAllInput(string ifirstname, string ilastname, string itlf, string iname, string iage) {
+bool CheckInWindow::checkAllInput(QString ifirstname, QString ilastname, QString itlf, QString iname, QString iage) {
     Customer c;
     Animal a;
-    bool fn = c.checkName(ifirstname);
-    bool ln = c.checkName(ilastname);
-    bool tlf = c.checkTlfNr(itlf);
-    bool name = a.checkName(iname);
-    bool age = a.checkAge(iage);
+    bool fn = c.checkName(ifirstname.toStdString());
+    bool ln = c.checkName(ilastname.toStdString());
+    bool tlf = c.checkTlfNr(itlf.toStdString());
+    bool name = a.checkName(iname.toStdString());
+    bool age = a.checkAge(iage.toStdString());
 
     if(fn && ln && tlf && name && age) {
         return true;
@@ -78,34 +78,34 @@ bool CheckInWindow::checkAllInput(string ifirstname, string ilastname, string it
 
 void CheckInWindow::on_buttonBox_2_accepted()
 {
-    Database mydb;
-    mydb.startDB();
+    db.startDB();
+
 
     //Customer
-    string firstname = ui->inputFirstname->text().toStdString();
-    string lastname = ui->inputLastname->text().toStdString();
+    QString firstname = ui->inputFirstname->text();
+    QString lastname = ui->inputLastname->text();
     int tlfNr = ui->inputTlf->text().toInt();
-    Customer c = Customer(firstname, lastname, to_string(tlfNr));
+    Customer c = Customer(firstname, lastname, tlfNr);
 
     //Animal
     bool isFemale = ui->radioButton_3->isChecked();
-    string name = ui->inputName->text().toStdString();
+    QString name = ui->inputName->text();
     int age = ui->inputAge->text().toInt();
     bool specialNeeds = ui->checkBox->checkState();
     Animal a;
 
     //Check input
-    bool correctInput = checkAllInput(firstname, lastname, to_string(tlfNr), name, to_string(age));
+    bool correctInput = checkAllInput(firstname, lastname, QString::number(tlfNr), name, QString::number(age));
 
     if(correctInput) {
-        mydb.insertCustomer(firstname, lastname, tlfNr);
-        mydb.insertAnimal(c, name, age, animalType, isFemale, specialNeeds);
+        db.insertCustomer(firstname, lastname, tlfNr);
+        db.insertAnimal(c, name, age, animalType, isFemale, specialNeeds);
 
-        int animalId = mydb.getAnimalId(tlfNr, name);
+        int animalId = db.getAnimalId(tlfNr, name);
         if(animalType == "Cat") {
-            mydb.setCatInCage(animalId);
+            db.setCatInCage(animalId);
         } else {
-            mydb.setDogInCage(animalId);
+            db.setDogInCage(animalId);
         }
 
         if(specialNeeds) {

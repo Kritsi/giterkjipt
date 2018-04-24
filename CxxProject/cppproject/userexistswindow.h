@@ -17,8 +17,8 @@ public:
     ~userExistsWindow();
     void setTlfNr(int tlf);
     void setCusomerName();
-    void setAnimalType(string type);
-    bool checkAllInput(string iname, string iage);
+    void setAnimalType(QString type);
+    bool checkAllInput(QString iname, QString iage);
 
 private slots:
     void on_buttonBox_accepted();
@@ -26,7 +26,7 @@ private slots:
 private:
     Ui::userExistsWindow *ui;
     int tlfnr;
-    string animalType;
+    QString animalType;
 };
 
 #endif // USEREXISTSWINDOW_H

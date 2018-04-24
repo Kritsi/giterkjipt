@@ -23,7 +23,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    bool loginUser (string username, string password);
+    bool loginUser (QString username, string password);
     bool checkPassword(string dbPass, string inputPass);
 
 };

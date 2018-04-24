@@ -9,10 +9,10 @@ Customer::Customer() {
     lastname = "";
     age = 0;
     kundeNr = 0;
-    tlfNr = "";
+    tlfNr = 0;
 }
 
-Customer::Customer(string fn, string ln, string t) {
+Customer::Customer(QString fn, QString ln, int t) {
     firstname = fn;
     lastname = ln;
     tlfNr = t;

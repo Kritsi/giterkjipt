@@ -6,6 +6,7 @@
 #include "ansatt.h"
 #include "kunde.h"
 #include "animal.h"
+#include "db.h"
 
 using namespace std;
 
@@ -30,11 +31,10 @@ public:
     bool checkFreeCages(string animalType);
 
 private:
+    Database db;
     string name;
     int cages;
-    vector<Employee> employees;
-    vector<Customer> customers;
-    vector<Animal> animals;
+
 };
 
 #endif // HOTELL_H

@@ -11,13 +11,13 @@ Person::Person() {
     age = 0;
 }
 
-Person::Person(string fn, string ln, int a) {
+Person::Person(QString fn, QString ln, int a) {
     firstname = fn;
     lastname = ln;
     age = a;
 }
 
-string Person::printInfo() {
+QString Person::printInfo() {
     return firstname + " " + lastname + " " + tlfNr;
 }
 
@@ -37,19 +37,19 @@ bool Person::checkTlfNr(string tlfNr) {
     return false;
 }
 
-void Person::setFirstName(string fn) {
+void Person::setFirstName(QString fn) {
     firstname = fn;
 }
 
-string Person::getFirstName() {
+QString Person::getFirstName() {
     return firstname;
 }
 
-void Person::setLastName(string ln) {
+void Person::setLastName(QString ln) {
     lastname = ln;
 }
 
-string Person::getLastName() {
+QString Person::getLastName() {
     return lastname;
 }
 
@@ -61,18 +61,18 @@ int Person::getAge() {
     return age;
 }
 
-void Person::setTlfNr(string nr) {
+void Person::setTlfNr(int nr) {
     tlfNr = nr;
 }
 
-string Person::getTlfNr() {
+int Person::getTlfNr() {
     return tlfNr;
 }
 
-void Person::setBirthDate(string b) {
+void Person::setBirthDate(QString b) {
     birthDate = b;
 }
 
-string Person::getBirthDate() {
+QString Person::getBirthDate() {
     return birthDate;
 }

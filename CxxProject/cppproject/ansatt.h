@@ -8,12 +8,12 @@ using namespace std;
 class Employee: public Person {
 public:
     Employee();
-    Employee(string, string, int, string);
+    Employee(QString firstname, QString lastname, int age, int ansattNr);
     void setAnsattNr(string);
-    string getAnsattNr();
+    int getAnsattNr();
 
 private:
-    string ansattNr;
+    int ansattNr;
 };
 
 #endif // ANSATT_H

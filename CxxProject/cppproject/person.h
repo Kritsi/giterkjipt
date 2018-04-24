@@ -1,34 +1,34 @@
 #ifndef PERSON_H
 #define PERSON_H
 #include <iostream>
-
+#include <QString>
 using namespace std;
 
 class Person {
 public:
     Person();
-    Person(string fn, string ln, int a);
-    string printInfo();
-    void setFirstName(string);
-    string getFirstName();
-    void setLastName(string);
-    string getLastName();
+    Person(QString fn, QString ln, int a);
+    QString printInfo();
+    void setFirstName(QString);
+    QString getFirstName();
+    void setLastName(QString);
+    QString getLastName();
     void setAge(int);
     int getAge();
-    void setTlfNr(string);
-    string getTlfNr();
-    void setBirthDate(string);
-    string getBirthDate();
+    void setTlfNr(int);
+    int getTlfNr();
+    void setBirthDate(QString);
+    QString getBirthDate();
     bool checkName(string iname);
     bool checkTlfNr(string tlfNr);
     //bool checkAllInput(string, ifirstname, ilastname, itlf, iname, iage);
 
 protected:
-    string firstname;
-    string lastname;
+    QString firstname;
+    QString lastname;
     int age;
-    string tlfNr;
-    string birthDate;
+    int tlfNr;
+    QString birthDate;
 };
 
 #endif // PERSON_H

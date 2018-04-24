@@ -16,7 +16,7 @@ class user : public QDialog
 public:
     explicit user(QWidget *parent = 0);
     ~user();
-    void setAnimalType(string type);
+    void setAnimalType(QString type);
 
 private slots:
     void on_pushButton_clicked();
@@ -27,7 +27,7 @@ private slots:
 
 private:
     Ui::user *ui;
-    string animalType = "";
+    QString animalType = "";
 };
 
 #endif // USER_H

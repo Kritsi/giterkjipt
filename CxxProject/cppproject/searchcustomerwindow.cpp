@@ -16,7 +16,7 @@ searchCustomerWindow::~searchCustomerWindow()
     delete ui;
 }
 
-void searchCustomerWindow::setAnimalType(string type) {
+void searchCustomerWindow::setAnimalType(QString type) {
     animalType = type;
 }
 

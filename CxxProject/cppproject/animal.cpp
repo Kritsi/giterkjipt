@@ -13,10 +13,6 @@ Animal::Animal() {
     specialNeeds = false;
 }
 
-string Animal::printAnimal() {
-    return owner.getFirstName() + " " + name + " " + to_string(age) + " "
-         + type + " " + to_string(isFemale) + " " + to_string(specialNeeds);
-}
 
 bool Animal::checkName(string iname) {
     regex reg("^[a-zæøåA-ZÆØÅ ]+$");

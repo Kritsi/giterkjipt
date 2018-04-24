@@ -2,8 +2,7 @@
 #define CHECKINWINDOW_H
 
 #include <QDialog>
-
-using namespace std;
+#include "db.h"
 
 namespace Ui {
 class CheckInWindow;
@@ -16,17 +15,17 @@ class CheckInWindow : public QDialog
 public:
     explicit CheckInWindow(QWidget *parent = 0);
     ~CheckInWindow();
-    void setAnimalType(string type);
-    bool checkAllInput(string ifirstname, string ilastname, string itlf, string iname, string iage);
+    void setAnimalType(QString type);
+    bool checkAllInput(QString ifirstname, QString ilastname, QString itlf, QString iname, QString iage);
 
 private slots:
     void on_buttonBox_2_accepted();
-
     void on_buttonBox_2_rejected();
 
-private:
+private: 
+    Database db;
     Ui::CheckInWindow *ui;
-    string animalType;
+    QString animalType;
 };
 
 #endif // CHECKINWINDOW_H
